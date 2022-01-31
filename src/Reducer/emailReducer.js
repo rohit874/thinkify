@@ -13,7 +13,7 @@ const emailReducer = (state=[], action) =>{
             ]
         case "ADD_TO_FAVORITE":
             state = state.map((data)=>{
-                if (data.id==action.payload) {
+                if (data.id===action.payload) {
                     return({
                         ...data,
                         favorite:true
@@ -24,23 +24,10 @@ const emailReducer = (state=[], action) =>{
                 }
             })
             return [...state]
-        case "REMOVE_FROM_FAVORITE":
-            state = state.map((data)=>{
-                if (data.id==action.payload) {
-                    return({
-                        ...data,
-                        favorite:false
-                    })
-                }
-                else{
-                    return data
-                }
-            })
-            return [...state]
 
         case "MARK_AS_READ":
             state = state.map((data)=>{
-                if (data.id==action.payload) {
+                if (data.id===action.payload) {
                     return({
                         ...data,
                         read:true
@@ -51,16 +38,7 @@ const emailReducer = (state=[], action) =>{
                 }
             })
             return [...state]
-        case "FILTER_BY":
-            let filter = state.filter((data)=>{
-                if (action.payload=="unread") {
-                    return data.read==false;
-                }
-                else{
-                    return data[action.payload]==true;
-                }
-            });
-            return filter;
+
         default:
             return state
     }
